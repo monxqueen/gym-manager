@@ -1,0 +1,74 @@
+<div class="item">
+            <div>Avatar URL</div>
+            <div>
+                <input
+                    type="url"
+                    name="avatar_url"
+                    placeholder="http://"
+                    value="{{ instructor.avatar_url }}"
+                > <!--quando o tipo for url, o dado que desejo receber é do tipo http:// etc -->
+            </div>
+        </div>
+        
+        <div class="item">
+            <div>Instrutor</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do Instrutor"
+                    value="{{ instructor.name }}"
+                > <!--quando o tipo for text, o dado que desejo receber é do tipo texto, e o atributo name vai permitir que eu pegue os dados depois no método post.-->
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Data de nascimento</div>
+            <div>
+                <input 
+                    type="date"
+                    name="birth"
+                    value="{{ instructor.birth }}"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Sexo</div>
+            <div>
+                <span>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        value="M" 
+                        {% if instructor.gender == "M" %}
+                            checked
+                        {% endif %}> Masculino 
+                </span>
+                <!--o tipo de input radio é para selecionar (com uma bolinha) o valor é oq vai diferenciar no backend se a escolha foi feminino ou masculino, e essa seleção se torna obrigatória com o checked-->
+                <span>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        value="F"
+                        {% if instructor.gender == "F" %}
+                            checked
+                        {% endif %}> Feminino 
+                </span>
+                
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Área de atuação</div>
+            <div>
+                <input
+                    type="text"
+                    name="services"
+                    placeholder="Separe os serviços prestados por vírgula"
+                    value="{{ instructor.services }}"
+                >
+            </div>
+        </div>
+
+        <button type="submit">Salvar</button> <!--com o tipo "SUBMIT" ele vai perceber que está dentro de um form e vai exercutar a ação de enviar os dados para a página /instructors-->

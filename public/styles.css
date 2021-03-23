@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --main-color: rgb(226, 100, 100);
+    --second-color: #F7DF1E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background-image: linear-gradient(to right, #C6FFDD, #FBD786, #f7797d );
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.links {
+    font-size: 22px;
+}
+
+.links a + a{ /*o a + a implica que aqui só vai pegar o segundo a, pois tem um a anterior a ele.*/
+    margin-left: 32px; /*para distanciar o nome instructors de members*/
+}
+
+.links a {
+    text-decoration: none; /*para tirar o sublinhado que fica embaixo de links no html*/
+    color: #f7797d;
+    position: relative;
+}
+
+.links a.active { /*quando estiver dentro da page (ou instructor ou members)*/
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.links a:hover {/*quando o mouse tiver em cima*/
+    color: var(--main-color);
+}
+
+.links a::after {/*isso é um pseudoelemento (::after, ou ::before)*/
+    content: ""; /*obrigatoriamente precisa ter um content*/
+    width: 0;
+    height: 2px;
+    background-color: var(--main-color);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.links a:hover::after { /*quando passar o mouse em cima, o sublinhado que está embaixo de instructors e members vai aparecer gradativamente*/
+    width: 100%;
+    transition: width 200ms ease-in-out; /*a transição vai acontecer no width, vai durar 200 milisegundos, como ele vai percorrer (rapido, devagar, etc) e quanto tempo vai demorar pra ele começar a fazer a transição (nesse caso nao botei nenhum tempo, vai começar imeditamente a transiçao)*/
+}
+
+/* CARD */
+.card {
+    background-color: white;
+    width: 800px;
+    min-height: 400px;
+
+    /*espaçamento alinhado ao centro*/
+    margin: 45px auto;
+
+    /*grid divido ao meio*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    /*sombra*/
+    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4); /*espessura do eixo x, eixo y, do blur (borramento), espalhamento e a cor*/
+
+    /*animation*/
+    animation-name: up 200ms ease-out;
+    /*animation-duration: 200ms;
+    animation-timing-function: ease-out;*/
+}
+
+@keyframes up {
+    /* sai de 0% e vai até 100% */
+    from { 
+        opacity: 0;
+        transform: translateY(15px)
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* DETALHES INSTRUTOR */
+
+.details {
+    padding: 32px;
+}
+
+.details .item {
+    border-bottom: 2px solid rgba(0,0,0, 0.1);
+    padding: 16px 0;
+}
+
+.details .item:last-child { /*pra tirar a linha só do ultimo elemento, usa a propriedade last-child*/
+    border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) {
+    font-size: 14px;
+    line-height: 24px;
+    color: #777;
+    letter-spacing: 0.7px;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2) {
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+}
+
+.details h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.details .item span {
+    padding: 8px 16px;
+    background-color: var(--second-color);
+    border-radius: 16px;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block; /*usei isso aqui pra ele aceitar o margin-block e distanciar o nome musculação/crossfit do nome acompanhamento q está em cima*/
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* FORMULÁRIO (NOVO INSTRUTOR) */
+
+input, select {
+    width: 100%;
+    outline: none; /*para tirar a linha que ficava ao redor quando eu selecionava alguma input de texto*/
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+}
+
+select {
+    background-color: rgb(240, 238, 238);
+    border-radius: 5px; 
+}
+
+input[type="radio"]{ /*tive que criar isso aqui pois quando eu coloquei o width do input como 100%, quebrou o tipo input radio deixando ele todo necrosado aksksk*/
+    width: initial;
+    margin-right: 4px;
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"],
+a.button {
+    padding: 8px 32px;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 100%;
+    font-size: 16px;
+}
+
+a.button {
+    display: block; /*faz o botão "enviar" pegar a linha toda*/
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+#form-delete button[type="submit"] {
+    margin-top: 8px;
+    background-color: red;
+}
+
+/*INDEX INSTRUCTORS TABLE*/
+.table-container{
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.table-container table{
+   border-spacing: 0; /*pois nas configurações do navegador estava com um espaçamento de 2px*/
+}
+
+.table-container thead{
+    text-align: left;
+}
+
+td, th{
+    padding: 16px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+th{
+    text-transform: uppercase;
+    color: #777;
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr td:first-child {
+    display: grid;
+    grid-template-columns: 64px 1fr; /*no lado esquerdo (em que está a imagem) deixo um espaço de 64px e do outro lado deixo um espaço flexível*/
+    align-items: center;
+}
+
+tbody tr td:first-child span {
+    width: 48px;
+    height: 48px;
+    background-position: center; 
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px; /*em ordem: eixo do x, eixo do y, blur, spread*/
+    border: 2px solid white;
+}
+
+tbody a,
+.table-container a:first-child{
+    text-decoration: none;
+    background-color: var(--main-color);
+    color: white;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.table-container > a{
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+tbody a:hover{
+    background-color: rgb(236, 195, 119);
+}
+
+.table-container thead tr th:last-child,
+td:last-child{
+    text-align: center;
+}

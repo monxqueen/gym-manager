@@ -1,0 +1,20 @@
+{% extends "layout.njk" %} <!-- aqui vai ta importando todas as config do layout --> 
+
+{% block content %}
+
+<form class="card" method="POST" action="/members"> <!--usa o método post pois ele é melhor para a criação de dados. O action indica para onde vai enviar os dados coletados no formulário, que nesse caso vai enviar pra página memberss-->
+    <section 
+        class ="avatar" 
+        style="background: url(https://source.unsplash.com/collection/9374406/500) no-repeat center center / cover"></section>
+    
+    <section class="details">
+        
+        <h3>Novo Membro</h3>
+    
+    {% include 'members/fields.njk'%}
+    
+    </section>
+
+</form>
+
+{% endblock content %}

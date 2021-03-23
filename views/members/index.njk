@@ -1,0 +1,35 @@
+{% extends "layout.njk" %} <!-- aqui vai ta importando todas as config do layout --> 
+
+{% block content %}
+
+<div class="card table-container">
+    <a href="/members/create">Novo</a>
+    <table width=100%> <!--tabela em html--> 
+        <thead><!--abeçalho-->
+            <tr> <!--linha-->
+                <th>Membro</th><!--coluna-->
+                <th>Email</th>
+                <th>Peso</th>
+                <th>Altura</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody><!--corpo da tabela-->
+            {% for member in members %}
+            <tr>
+                <td>
+                    <span style="background-image: url({{member.avatar_url}})"></span>
+                    {{member.name}}
+                </td> <!--coluna no tbody-->
+                <td>{{member.email}}</td>
+                <td>{{member.height}}kg</td>
+                <td>{{member.weight}}cm</td>
+                <td><a href="/members/{{member.id}}">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock content %}

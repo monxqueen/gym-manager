@@ -1,0 +1,127 @@
+<div class="item">
+            <div>Avatar URL</div>
+            <div>
+                <input
+                    type="url"
+                    name="avatar_url"
+                    placeholder="http://"
+                    value="{{ member.avatar_url }}"
+                > <!--quando o tipo for url, o dado que desejo receber é do tipo http:// etc -->
+            </div>
+        </div>
+        
+        <div class="item">
+            <div>Nome</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do Membro"
+                    value="{{ member.name }}"
+                > <!--quando o tipo for text, o dado que desejo receber é do tipo texto, e o atributo name vai permitir que eu pegue os dados depois no método post.-->
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Email</div>
+            <div>
+                <input 
+                    type="email"
+                    name="email"
+                    value="{{ member.email }}"
+                > <!--quando o tipo for text, o dado que desejo receber é do tipo texto, e o atributo email vai permitir que eu pegue os dados depois no método post.-->
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Data de nascimento</div>
+            <div>
+                <input 
+                    type="date"
+                    name="birth"
+                    value="{{ member.birth }}"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Sexo</div>
+            <div>
+                <span>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        value="M" 
+                        {% if member.gender == "M" %}
+                            checked
+                        {% endif %}> Masculino 
+                </span>
+                <!--o tipo de input radio é para selecionar (com uma bolinha) o valor é oq vai diferenciar no backend se a escolha foi feminino ou masculino, e essa seleção se torna obrigatória com o checked-->
+                <span>
+                    <input 
+                        type="radio" 
+                        name="gender" 
+                        value="F"
+                        {% if member.gender == "F" %}
+                            checked
+                        {% endif %}> Feminino 
+                </span>
+                
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Tipo sanguíneo</div>
+            <div>
+                <select name="blood">
+                    <option value="A+" {% if member.blood == "A1"%}selected{% endif %}>
+                        A+
+                    </option>
+                    <option value="A-" {% if member.blood == "A0"%}selected{% endif %}>
+                        A-
+                    </option>
+                    <option value="B+" {% if member.blood == "B1"%}selected{% endif %}>
+                        B+
+                    </option>
+                    <option value="B-" {% if member.blood == "B0"%}selected{% endif %}>
+                        B-
+                    </option>
+                    <option value="AB+" {% if member.blood == "AB1"%}selected{% endif %}>
+                        AB+
+                    </option>
+                    <option value="AB-" {% if member.blood == "AB0"%}selected{% endif %}>
+                        AB-
+                    </option>
+                    <option value="O+" {% if member.blood == "O1"%}selected{% endif %}>
+                        O+ 
+                    </option>
+                    <option value="O-" {% if member.blood == "O0"%}selected{% endif %}>
+                        O-
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Peso (kg)</div>
+            <div>
+                <input 
+                    type="number"
+                    name="weight"
+                    value="{{ member.weight }}"
+                >
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Altura (cm)</div>
+            <div>
+                <input 
+                    type="number"
+                    name="height"
+                    value="{{ member.height }}"
+                >
+            </div>
+        </div>
+
+        <button type="submit">Salvar</button> <!--com o tipo "SUBMIT" ele vai perceber que está dentro de um form e vai exercutar a ação de enviar os dados para a página /members-->

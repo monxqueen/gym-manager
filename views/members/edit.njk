@@ -1,0 +1,45 @@
+{% extends "layout.njk" %} <!-- aqui vai ta importando todas as config do layout --> 
+
+{% block content %}
+
+<div class="card">
+    <section 
+        class ="avatar" 
+        style="background: url({{member.avatar_url}}) no-repeat center center / cover">
+    </section>
+
+    <section class="details">
+
+        <form method="POST" action="/members?_method=PUT"> <!--usa o método post pois ele é melhor para a criação de dados. O action indica para onde vai enviar os dados coletados no formulário, que nesse caso vai enviar pra página members. No action eu uso o ?_method=PUT caso eu queira sobrepor o tipo de método que eu estou usando, nesse caso usando o put no lugar do post-->
+            
+            <h3>Editar Membro</h3>
+
+            {% include 'members/fields.njk' %} <!-- aqui vai puxar de fora um arquivo externo -->
+        
+            <input type="hidden" name="id" value={{member.id}}>
+        
+
+        </form>
+
+        <form id="form-delete" action="/members?_method=DELETE" method="post">
+            <input type="hidden" name="id" value={{member.id}}>
+            <button type="submit">Deletar</button>
+        </form>
+    
+    </section>
+
+</div>
+
+<script>
+    const formDelete = document.querySelector("#form-delete")
+    formDelete.addEventListener("submit", function(event){
+        const confirmation = confirm("Deseja realmente deletar?")//a função confirm vai fazer aparecer uma caixinha flutuante para confirmar se deseja realmente deletar ou não
+        if(!confirmation){
+            event.preventDefault() //aqui vai cancelar o envio do formulário para deletar o membro/instrutor
+        }
+    })
+</script>
+
+
+
+{% endblock content %}
